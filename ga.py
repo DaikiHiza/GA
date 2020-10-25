@@ -166,13 +166,13 @@ def mutate(child, mutation_p):
 
 if __name__ == '__main__':
 #     設定
-    population = 300
+    population = 100
     n = 2
     mutation_p = 0.005
-    max_generation = 100
+    max_generation = 1000
     generation = 0
     selection_method = 0
-    crossover_method = 1
+    crossover_method = 0
     selection = 'ルーレット選択' if selection_method == 0 else '期待値選択'
     cross = '一点交叉' if crossover_method == 0 else '二点交叉'
 
