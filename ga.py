@@ -72,12 +72,12 @@ def select(evaluated_data, population, selection_method):
 #         設定個体数と再生数の差を取得
         diff = population - sum(regen_list)
 
-#         設定個体数よりも少なかった場合，最も適合度の高い期待値の再生数を増やす
+#         設定個体数よりも再生数の総和が少なかった場合，最も適合度の高い期待値の再生数を増やす
         if sum(regen_list) < population:
             index_num = expected_value.index(max(expected_value))
             regen_list[index_num] += diff
 
-#         設定個体数よりも多かった場合，適合度の低い期待値の再生数から減らしていく
+#         設定個体数よりも再生数の総和が多かった場合，適合度の低い期待値の再生数から減らしていく
         if sum(regen_list) > population:
             tmp = list(expected_value)
             while diff != 0:
@@ -168,10 +168,10 @@ if __name__ == '__main__':
 #     設定
     population = 100
     n = 2
-    mutation_p = 0.005
+    mutation_p = 0.03
     max_generation = 1000
     generation = 0
-    selection_method = 0
+    selection_method = 1
     crossover_method = 0
     selection = 'ルーレット選択' if selection_method == 0 else '期待値選択'
     cross = '一点交叉' if crossover_method == 0 else '二点交叉'
@@ -208,7 +208,7 @@ if __name__ == '__main__':
 
     fig = plt.figure()
     plt.rcParams['font.family'] = 'IPAexGothic'
-
+    plt.grid()
     plt.plot(plt_x, plt_y, label=selection + '\n' + cross)
     plt.legend()
     plt.legend(bbox_to_anchor=(1, 0), loc='lower right', borderaxespad=1, fontsize=12)
